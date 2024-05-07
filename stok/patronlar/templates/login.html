@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login {
+            position: relative;
+            width: 400px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            overflow: auto; /* İçeriği sığdırmak için */
+        }
+
+        form {
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-size: 50px;
+            text-align: center;
+            margin-top: 0; /* Başlık için boşluk kaldırma */
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="login">
+        <div class="logo-container">
+            <img src="{% static 'img/logo.png' %}" alt="">
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Giriş Yapın</h2>
+            {% if error_message %}
+                <p class="error-message">{{ error_message }}</p>
+            {% endif %}
+            <label for="username">Kullanıcı Adı:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Şifre:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+            <div class="button" style="text-align: center;">
+                <input type="submit" value="Giriş Yap">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

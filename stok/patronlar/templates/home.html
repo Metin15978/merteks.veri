@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anasayfa</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    max-width: 150px;
+    overflow-y: auto;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+        input[type="text"],
+        select,
+        button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+
+        input[type="text"]::placeholder {
+            color: #aaa;
+        }
+
+        option {
+            background-color: #fff;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        button[type="submit"] {
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .Çıkış{
+          text-decoration: none;
+          background-color: #007bff;
+          color:white;
+          padding: 10px;
+          border-radius: 5px;
+        }
+        .ebat{
+          width: 90%;
+          margin: auto;
+        }
+.pagination {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 3px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+  @media screen and (max-width: 450px) {
+  table {
+    max-width: 450px;
+    overflow-x: auto;
+  }
+
+  th, td {
+    max-width: none;
+    word-wrap: break-word;
+    font-size: 10px; /* Tablo hücrelerinin metin boyutunu küçült */
+    padding: 5px; /* Tablo hücrelerinin iç boşluğunu azalt */
+  }
+  
+  th {
+    font-size: 12px; /* Tablo başlıklarının metin boyutunu küçült */
+  }
+
+  .ebat {
+    width: 100%; /* Formun genişliğini ekranın tamamına yay */
+  }
+
+
+  form input[type="text"],
+  form select,
+  form button {
+    width: 100%; /* Formdaki giriş alanlarını ekranın tamamına yay */
+    margin-bottom: 10px; /* Formdaki giriş alanları arasındaki boşluğu artır */
+  }
+
+}
+@media screen and (min-width: 451px) and (max-width: 700px) {
+  th, td {
+    max-width: none;
+    word-wrap: break-word;
+    font-size: 8px; /* Tablo hücrelerinin metin boyutunu küçült */
+    padding: 5px; /* Tablo hücrelerinin iç boşluğunu azalt */
+  }
+  
+  th {
+    font-size: 8px; /* Tablo başlıklarının metin boyutunu küçült */
+  }
+
+  .ebat {
+    width: 100%; /* Formun genişliğini ekranın tamamına yay */
+    
+  }
+  form input[type="text"],
+  form select,
+  form button {
+    width: 70%; /* Formdaki giriş alanlarını ekranın tamamına yay */
+    margin-bottom: 10px; /* Formdaki giriş alanları arasındaki boşluğu artır */
+  }
+  input[type="text"],
+        select,
+        button {
+            padding: 5px;
+            font-size: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    h1{
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+  }
+
+}
+
+
+
+</style>
+</head>
+<body>
+<h1>Şirketler Listesi</h1>
+<div class="ebat">
+<form method="GET" action="{% url 'search' %}">
+
+    <input type="text" name="q" placeholder="Arama yap...">
+    <select name="order_by" >
+        <option value="tarih">en eskiden en yeniye</option>
+        <option value="-tarih">en yeniden en eskiye</option>
+        <!-- Diğer sıralama seçenekleri buraya eklenebilir -->
+    </select>
+    <input type="text" name="start_date" placeholder="Başlangıç tarihi (01/01/2024)">
+    <input  type="text" name="end_date" placeholder="bitiş tarihi (12/12/2024)">
+    <button type="submit">Ara</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Durumu</th>
+      <th>Şirket Adı</th>
+      <th>Adet</th>
+      <th>Sha</th>
+      <th>cinsi-1</th>
+      <th>cinsi-2</th>
+      <th>Renk</th>
+      <th>Demir Çapı</th>
+      <th>Temiz Çapı</th>
+      <th>Boy</th>
+      <th>Not Bilgisi</th>
+      <th>Tarih</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for firma in firmalar %}
+    <tr>
+      <td>{{ firma.durumu }}</td>
+      <td>{{ firma.firma_adi }}</td>
+      <td>{{ firma.Adet }}</td>
+      <td>{{ firma.sha }}</td>
+      <td>{{ firma.cinsi_1 }}</td>
+      <td>{{ firma.cinsi_2 }}</td>
+      <td>{{ firma.renk }}</td>
+      <td>{{ firma.demir_capi }}</td>
+      <td>{{ firma.temiz_capi }}</td>
+      <td>{{ firma.boy }}</td>
+      <td class="not">{{ firma.not_bilgisi }}</td>
+      <td>{{ firma.tarih }}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+<div>
+  <a class="Çıkış" href="{% url 'logout' %}">Çıkış Yap</a>
+</div>
+
+</div>
+<div class="pagination">
+  <span  class="step-links">
+    {% if firmalar.has_previous %}
+      <a href="?page=1">&laquo; İlk</a>
+      <a href="?page={{ firmalar.previous_page_number }}">Önceki</a>
+    {% endif %}
+
+    <span class="current">
+      Sayfa {{ firmalar.number }} / {{ firmalar.paginator.num_pages }}
+    </span>
+
+    {% if firmalar.has_next %}
+      <a href="?page={{ firmalar.next_page_number }}">Sonraki</a>
+      <a href="?page={{ firmalar.paginator.num_pages }}">Son &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+
+<!-- <a class="Çıkış" href="{% url 'logout' %}">Çıkış Yap</a> -->
+</div>
+</body>
+</html>
